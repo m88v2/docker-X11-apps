@@ -3,7 +3,7 @@ FROM ubuntu:21.04
 ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update && apt-get install -y sudo bash wget >> /dev/null
+RUN apt-get update && apt-get install -y sudo bash wget libswt-gtk-4-java >> /dev/null
 
 RUN mkdir /home/fgm && \
     groupadd fgm && \
