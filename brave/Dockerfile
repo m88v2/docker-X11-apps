@@ -5,7 +5,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN echo -e "XKBMODEL='pc105'\nXKBLAYOUT='us'\nXKBVARIANT='intl'\nXKBOPTIONS=''" > /etc/default/keyboard
 
-RUN apt-get update && apt-get install -y sudo bash bzip2 xz-utils >> /dev/null
+RUN apt-get update && apt-get install -y sudo bash bzip2 xz-utils wget tar >> /dev/null
 
 RUN mkdir /home/fgm && \
     groupadd fgm && \
@@ -13,9 +13,6 @@ RUN mkdir /home/fgm && \
     echo "fgm ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/fgm && \
     chmod 0440 /etc/sudoers.d/fgm && \
     chown fgm:fgm -R /home/fgm
-
-# install requiriments 
-RUN apt-get install -y wget tar >> /dev/null
 
 # brave
 RUN sudo apt-get install -y apt-transport-https curl
