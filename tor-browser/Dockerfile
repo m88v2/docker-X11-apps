@@ -1,5 +1,23 @@
+#
+# ############################################################################
+# Project: M88V2.docker (none)
+# File...: tor-browser/Dockerfile
+# Created: Saturday, 2022/03/05 - 03:47:59
+# Author.: Fabiano Matos, fgm (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Last Modified: Monday, 2022/03/07 - 20:21:21
+# Modified By..: Fabiano Matos, fgm (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Version: 0.1.1.2
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Description: 
+#  >
+# ############################################################################
+# HISTORY:
+#
 FROM ubuntu:18.04
 LABEL author="fbnmtz"
+LABEL organization="m88v2"
 LABEL mail="fabiano.matoz@gmail.com"
 
 ENV TZ=America/Sao_Paulo
