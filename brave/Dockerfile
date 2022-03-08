@@ -1,35 +1,27 @@
 FROM ubuntu:21.04
 
 ENV TZ=America/Sao_Paulo
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone && \
+    echo -e "XKBMODEL='pc105'\nXKBLAYOUT='us'\nXKBVARIANT='intl'\nXKBOPTIONS=''" > /etc/default/keyboard && \
+    mkdir /home/user && \
+    groupadd user && \
+    useradd -d /home/user -s /bin/bash -g user user && \
+    chown user:user -R /home/user
 
-RUN echo -e "XKBMODEL='pc105'\nXKBLAYOUT='us'\nXKBVARIANT='intl'\nXKBOPTIONS=''" > /etc/default/keyboard
-
-RUN apt-get update && apt-get install -y sudo bash bzip2 xz-utils wget tar >> /dev/null
-
-RUN mkdir /home/fgm && \
-    groupadd fgm && \
-    useradd -d /home/fgm -s /bin/bash -g fgm fgm && \
-    echo "fgm ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/fgm && \
-    chmod 0440 /etc/sudoers.d/fgm && \
-    chown fgm:fgm -R /home/fgm
-
-# brave
-RUN sudo apt-get install -y apt-transport-https curl
-RUN sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-
-RUN echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"| sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-RUN sudo apt-get update >> /dev/null
-RUN sudo apt-get install -y brave-browser >> /dev/null
-
-RUN echo "brave-browser --disable-setuid-sandbox --no-sandbox" > /bin/brave && \
-sudo chmod +x /bin/brave
+RUN apt-get update && apt-get install -y apt-transport-https curl && \
+    curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg \
+        https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|  tee /etc/apt/sources.list.d/brave-browser-release.list && \
+    apt-get update && \
+    apt-get install -y brave-browser
 
 # remove trash files
 RUN rm -rf /var/cache/* && \
     rm -rf /usr/share/man/*  && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* && \
+    apt-get purge -y apt-transport-https curl
 
-USER fgm
-ENV HOME /home/fgm
-CMD /bin/brave
+USER user
+ENV HOME /home/user
+CMD brave-browser --no-sandbox
