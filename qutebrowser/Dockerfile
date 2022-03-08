@@ -4,23 +4,21 @@ ENV TZ=America/Sao_Paulo
 ARG DEBIAN_FRONTEND=noninteractive
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update >> /dev/null && apt-get install -y sudo bash wget vim apt-utils >> /dev/null
-
-RUN mkdir /home/fgm && \
-    groupadd fgm && \
-    useradd -d /home/fgm -s /bin/bash -g fgm fgm && \
-    echo "fgm ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/fgm && \
-    chmod 0440 /etc/sudoers.d/fgm && \
-    chown fgm:fgm -R /home/fgm
-
 # Install qutebrowser
-RUN apt-get install -y qutebrowser >> /dev/null
+RUN apt-get update >> /dev/null && \
+    apt-get install -y qutebrowser bash >> /dev/null && \
+    mkdir -p /home/user && \
+    groupadd user && \
+    useradd -d /home/user -s /bin/bash -g user user && \
+    chown user:user -R /home/user
+    # echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/user && \
+    # chmod 0440 /etc/sudoers.d/user && \
 
 # remove trash files
 RUN rm -rf /var/cache/* && \
     rm -rf /usr/share/man/*  && \
     rm -rf /tmp/*
 
-USER fgm
-ENV HOME /home/fgm
+USER user
+ENV HOME /home/user
 CMD qutebrowser
