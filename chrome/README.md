@@ -1,15 +1,21 @@
 # chrome
 
-Site project:
-https://www.google.com/intl/pt-BR/chrome
+##### Site project:
 
-Docker Image:
-https://hub.docker.com/repository/docker/fabriciogmatos/chrome
+* [https://www.google.com/intl/pt-BR/chrome](https://www.google.com/intl/pt-BR/chrome)
 
-# Run in Linux:
+##### Docker Image:
+
+* [https://hub.docker.com/r/m88v2/chrome](https://hub.docker.com/r/m88v2/chrome)
+
+##### Run in Linux:
 
 ```bash
-docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd):/home/fgm/share -e DISPLAY=$DISPLAY fabriciogmatos/chrome:v1
+docker run --rm -it \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $(pwd):/home/user/share \
+    -e DISPLAY=$DISPLAY \
+    m88v2/chrome
 ```
 
-[Go Home](../README.md)
+[Go Home](https://github.com/M88V2/docker-X11-apps)
