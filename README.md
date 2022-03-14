@@ -1,6 +1,6 @@
 # Docker
 
-docker applications with X11
+This repository is a collection of applications running inside docker with X11
 
 check our [profile on Docker Hub](https://hub.docker.com/u/m88v2)
 
@@ -12,6 +12,7 @@ check our [profile on Docker Hub](https://hub.docker.com/u/m88v2)
 - [qutebrowser](qutebrowser/)
 - [tor-browser](tor-browser/)
 - [tor-server](tor-server/)
+- [transmission](transmission/)
 
 to use x11 applications in docker you must set 'volume' and an 'env' variable as described bellow:
 
