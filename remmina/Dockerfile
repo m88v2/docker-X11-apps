@@ -5,10 +5,10 @@
 # Created: Thursday, 2023/01/26 - 19:26:30
 # Author.: @fbnmtz, (fabiano.matoz@gmail.com)
 # ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
-# Last Modified: Thursday, 2023/01/26 - 20:10:07
+# Last Modified: Thursday, 2023/01/26 - 20:24:39
 # Modified By..: @fbnmtz, (fabiano.matoz@gmail.com)
 # ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
-# Version: 0.0.1.18
+# Version: 0.0.1.22
 # ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
 # Description: 
 #  >
@@ -24,7 +24,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Install qutebrowser
 RUN apt-get update && \
     apt-get install -y \
-        remmina remmina-plugin-rdp remmina-plugin-secret spice-gtk && \
+        remmina remmina-plugin-rdp remmina-plugin-secret && \
     mkdir -p /home/user && \
     groupadd user && \
     useradd -d /home/user -s /bin/bash -g user user && \
