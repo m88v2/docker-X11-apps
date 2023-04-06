@@ -6,10 +6,10 @@
 # Created: Tuesday, 2023/01/17 - 02:57:16
 # Author.: @fbnmtz, (fabiano.matoz@gmail.com)
 # ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
-# Last Modified: Thursday, 2023/01/26 - 21:33:45
+# Last Modified: Thursday, 2023/04/06 - 00:02:24
 # Modified By..: @fbnmtz, (fabiano.matoz@gmail.com)
 # ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
-# Version: 0.0.1.16
+# Version: 0.0.2.37
 # ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
 # Description: 
 #  >
@@ -17,11 +17,10 @@
 # HISTORY:
 #
 docker run --rm \
-    -it \
+  -it \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "$PWD":/home/user/share \
-    -v "$PWD"/logs:/home/user/.local/share/qBittorrent/logs \
-    -v "$PWD"/downloads:/home/user/Downloads \
+  -v "$PWD"/downloads:/home/user/Downloads \
 	-e DISPLAY="$DISPLAY" \
-    --name qbittorrent-docker \
+  --name qbittorrent-docker \
 	m88v2/qbittorrent
