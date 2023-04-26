@@ -1,0 +1,39 @@
+#
+# ############################################################################
+# Project: docker-X11-apps (none)
+# File...: chrome/Dockerfile.latest
+# Created: Wednesday, 2023/04/26 - 00:27:03
+# Author.: @fbnmtz, (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Last Modified: Wednesday, 2023/04/26 - 01:06:34
+# Modified By..: @fbnmtz, (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Version: 0.0.1.23
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Description: 
+#  >
+# ############################################################################
+# HISTORY:
+#
+FROM ubuntu:23.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/Sao_Paulo
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+#     echo $TZ > /etc/timezone && \
+#     echo -e "XKBMODEL='pc105'\nXKBLAYOUT='us'\nXKBVARIANT='intl'\nXKBOPTIONS=''" > /etc/default/keyboard
+
+RUN apt update 
+RUN apt install -y sudo wget apt-utils tzdata gnupg gnupg1 gnupg2 && \
+    mkdir /home/user && \
+    groupadd user && \
+    useradd -d /home/user -s /bin/bash -g user user && \
+    chown user:user -R /home/user && \ 
+    echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/user && \
+    chmod 0440 /etc/sudoers.d/user 
+COPY ./install-chrome.sh /
+ENTRYPOINT [ "sudo", "./install-chrome.sh" ]
+
+USER user
+ENV HOME /home/user
+CMD google-chrome-stable --disable-setuid-sandbox --no-sandbox
