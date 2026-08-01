@@ -14,7 +14,7 @@ docker run --rm \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $(pwd):/home/user/share \
     -e DISPLAY=$DISPLAY \
-    --name keepasxc-docker \
+    --name keepassxc-docker \
     m88v2/keepassxc
 ```
 
