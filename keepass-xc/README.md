@@ -4,10 +4,9 @@ Site project:
 https://keepassxc.org/
 
 Docker Image:
+https://hub.docker.com/repository/docker/m88v2/keepassxc
 
-https://hub.docker.com/repository/docker/fabriciogmatos/firefox
-
-# Run in Linux:
+Run in Linux:
 
 ```bash
 docker run --rm \
